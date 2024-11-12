@@ -161,6 +161,10 @@
     <Content Include="Assets\Gifs\Pumpkinidle.gif" />
     <Content Include="Assets\Gifs\PumpkinJump.gif" />
     <Content Include="Assets\Gifs\PumpkinRun.gif" />
+    <Content Include="Assets\Images\stoplight_green.png" />
+    <Content Include="Assets\Images\stoplight_red.png" />
+    <Content Include="Assets\Images\stoplight_redyellow.png" />
+    <Content Include="Assets\Images\stoplight_yellow.png" />
     <Content Include="Properties\Default.rd.xml" />
   </ItemGroup>
   <ItemGroup>
