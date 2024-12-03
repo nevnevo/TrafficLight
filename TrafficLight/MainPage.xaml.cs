@@ -17,14 +17,24 @@ using Windows.UI.Xaml.Navigation;
 
 namespace TrafficLight
 {
-    /// <summary>
-    /// An empty page that can be used on its own or navigated to within a Frame.
-    /// </summary>
+
     public sealed partial class MainPage : Page
     {
+        TrafficLight TR;
         public MainPage()
         {
+
+
             this.InitializeComponent();
+            TR = new TrafficLight(TrafficLight.light.red, greenLight, yellowLight, redLight);
+            TR.Clear();
+
+
+        }
+
+        private void ManualBtn_Click(object sender, RoutedEventArgs e)
+        {
+            TR.NextColor();
         }
     }
 }
