@@ -1,41 +1,77 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data;
+using System.Windows;
 using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Shapes;
+using System.Timers;
+using Windows.UI.Xaml;
 
 namespace TrafficLight
 {
 
-    public class TrafficLight
+    public class StopLight
     {
         private light _color;
 
         private Ellipse _GreenLight;
         private Ellipse _YellowLight;
         private Ellipse _RedLight;
+        private bool _IsAuto;
+        private DispatcherTimer _autoTimer;
+        
 
-        public TrafficLight(light color, Ellipse GreenLight, Ellipse YellowLight, Ellipse RedLight)
+        public StopLight(light color, Ellipse GreenLight, Ellipse YellowLight, Ellipse RedLight)
         {
 
             _color = color;
             _GreenLight = GreenLight;
             _RedLight = RedLight;
             _YellowLight = YellowLight;
+
+
+            _autoTimer = new DispatcherTimer();//build timer object
+            _autoTimer.Stop();//Stopping the timer
+            _autoTimer.Interval = TimeSpan.FromSeconds(1);//setting the timer interval
+            _autoTimer.Tick += _autoTimer_Tick;
+            
+        }
+
+        private void _autoTimer_Tick(object sender, object e)
+        {
+            NextColor();
         }
         public enum light
         {
             red, green, yellow
+
         }
 
+        internal light GetLight()
+        {
+            return _color;
+        }
+
+        public void SetIsAuto(bool isAuto)
+        {
+            _IsAuto = isAuto;
+            if (_IsAuto)
+                _autoTimer.Start();
+            else
+            {
+                _autoTimer.Stop(); 
+            }
+
+        }
+        
+        
         public void NextColor()
         {
             Clear();
-
+            
             switch (_color)
             {
                 case (light.red):

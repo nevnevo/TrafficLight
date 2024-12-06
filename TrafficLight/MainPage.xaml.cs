@@ -17,16 +17,22 @@ using Windows.UI.Xaml.Navigation;
 
 namespace TrafficLight
 {
-
+    
     public sealed partial class MainPage : Page
     {
-        TrafficLight TR;
+        private StopLight TR;
+        private bool _IsAuto;
+        private Girl girlChar;
+        private Pumpkin pumpkinChar;
+        
         public MainPage()
         {
-
+            
 
             this.InitializeComponent();
-            TR = new TrafficLight(TrafficLight.light.red, greenLight, yellowLight, redLight);
+            TR = new StopLight(StopLight.light.red, greenLight, yellowLight, redLight);
+            girlChar = new Girl(GirlImg, Girl.stance.stand);
+            pumpkinChar = new Pumpkin(pumpkinImg, Pumpkin.stance.stand);
             TR.Clear();
 
 
@@ -35,6 +41,26 @@ namespace TrafficLight
         private void ManualBtn_Click(object sender, RoutedEventArgs e)
         {
             TR.NextColor();
+            girlChar.MatchStanceToLight(TR.GetLight());
+
+
+        }
+
+        private void AutoBtn_Click(object sender, RoutedEventArgs e)
+        {
+            if (_IsAuto)
+            
+                _IsAuto = false;
+                
+            
+            else
+            
+                _IsAuto = true;
+                
+            
+            TR.SetIsAuto(_IsAuto);
+
+
         }
     }
 }
