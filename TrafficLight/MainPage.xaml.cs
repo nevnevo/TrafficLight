@@ -41,7 +41,7 @@ namespace TrafficLight
         private void ManualBtn_Click(object sender, RoutedEventArgs e)
         {
             TR.NextColor();
-            girlChar.MatchStanceToLight(TR.GetLight());
+            
 
 
         }

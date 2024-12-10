@@ -21,7 +21,7 @@ namespace TrafficLight
             _gif = gif;
             _state = state;
             MatchGifToState();
-
+            Events.OnChange += MatchStanceToLight;
         }
         public enum stance
         {
